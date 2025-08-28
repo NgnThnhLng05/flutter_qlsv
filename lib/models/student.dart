@@ -1,6 +1,11 @@
 class Student {
-  String id;
-  String name;
+  final String id;
+  final String name;
+  final String className;
 
-  Student({required this.id, required this.name});
+  Student({
+    required this.id,
+    required this.name,
+    required this.className,
+  });
 }

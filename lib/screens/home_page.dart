@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'add_student_page.dart';
 import 'student_list_page.dart';
+import 'delete_student_page.dart'; // thêm trang xoá
+import '../services/student_service.dart'; // import StudentService
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar vẫn giữ nguyên
       appBar: AppBar(
         title: Text('Quản lý Sinh viên'),
         centerTitle: true,
       ),
-      // Stack giúp đặt ảnh nền dưới và nội dung ở trên
       body: Stack(
         children: [
           // Ảnh nền
@@ -47,6 +47,24 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => AddStudentPage()),
+                    );
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton.icon(
+                  icon: Icon(Icons.delete),
+                  label: Text('Xoá sinh viên'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DeleteStudentPage(
+                          students: StudentService.students, // dùng service
+                        ),
+                      ),
                     );
                   },
                 ),

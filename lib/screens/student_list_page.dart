@@ -10,17 +10,39 @@ class StudentListPage extends StatefulWidget {
 class _StudentListPageState extends State<StudentListPage> {
   @override
   Widget build(BuildContext context) {
-    final students = StudentService.students;
-
     return Scaffold(
       appBar: AppBar(title: Text('Danh sách sinh viên')),
-      body: students.isEmpty
-          ? Center(child: Text('Chưa có sinh viên nào.'))
-          : ListView.builder(
-        itemCount: students.length,
-        itemBuilder: (context, index) {
-          return StudentCard(student: students[index]);
-        },
+      body: Stack(
+        children: [
+          // Ảnh nền
+          Positioned.fill(
+            child: Image.asset(
+              'lib/assets/images/background.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          // Nội dung danh sách
+          StudentService.students.isEmpty
+              ? Center(
+            child: Text(
+              'Chưa có sinh viên nào!',
+              style: TextStyle(color: Colors.white),
+            ),
+          )
+              : RefreshIndicator(
+            // cho phép vuốt xuống để refresh danh sách
+            onRefresh: () async {
+              setState(() {}); // cập nhật lại khi có thay đổi
+            },
+            child: ListView.builder(
+              itemCount: StudentService.students.length,
+              itemBuilder: (context, index) {
+                return StudentCard(student: StudentService.students[index]);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
