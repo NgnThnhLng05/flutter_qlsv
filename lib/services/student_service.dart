@@ -8,4 +8,8 @@ class StudentService {
   static void addStudent(Student student) {
     _students.add(student);
   }
+
+  static void removeStudent(Student student) {
+    _students.remove(student);
+  }
 }

@@ -1,7 +1,7 @@
 class Student {
-  final String id;
-  final String name;
-  final String className;
+  String id;
+  String name;
+  String className;
 
   Student({
     required this.id,

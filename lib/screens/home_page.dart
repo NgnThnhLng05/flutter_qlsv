@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_student_page.dart';
 import 'student_list_page.dart';
+import 'edit_student_page.dart';
 import 'delete_student_page.dart'; // thêm trang xoá
 import '../services/student_service.dart'; // import StudentService
 
@@ -9,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quản lý Sinh viên'),
+        title: Text('Quản Lý Sinh Viên'),
         centerTitle: true,
       ),
       body: Stack(
@@ -47,6 +48,20 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => AddStudentPage()),
+                    );
+                  },
+                ),
+                SizedBox(height: 20),
+                ElevatedButton.icon(
+                  icon: Icon(Icons.edit),
+                  label: Text('Chỉnh sửa sinh viên'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditStudentPage()),
                     );
                   },
                 ),
